@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ML Crush – Hackathon Landing</title>
+
+  <!-- Satoshi Variable font -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,400,500,700,900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* -------------------- CSS RESET -------------------- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:"Satoshi",sans-serif;background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    :root{--clr-white:#ffffff;--clr-grey:#d6d6d6;--clr-outline:#4d4d4d}
+
+    /* -------------------- GLOWING BLOBS -------------------- */
+    /* two blurred radial‑gradient blobs (top‑left & bottom‑left),
+       + one directional glow (top‑right) – all purely decorative */
+    .blob{position:fixed;pointer-events:none;z-index:-1;width:600px;height:600px;border-radius:50%;filter:blur(120px);opacity:.8}
+    .blob.pink{background:radial-gradient(circle at 30% 30%,#ff00c8 0%,#d10092 40%,transparent 70%);top:-200px;left:-200px}
+    .blob.green{background:radial-gradient(circle at 70% 70%,#00ffc6 0%,#00b5ff 50%,transparent 80%);bottom:0;right:-300px;height:700px;width:700px}
+    .blob.red{background:radial-gradient(circle at 40% 60%,#ff0077 0%,#b3004e 30%,transparent 70%);bottom:-300px;left:-200px;width:500px;height:500px}
+
+    /* -------------------- CONTAINER -------------------- */
+    .container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+    /* -------------------- NAVBAR -------------------- */
+    .nav{margin:16px auto;border:2px solid var(--clr-white);border-radius:20px;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;font-size:18px;font-weight:700;position:fixed;top:0;left:0;right:0;max-width:1280px;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);z-index:1000}
+    .nav__links{display:flex;gap:48px}
+    .nav__links a{position:relative}
+    .nav__links a::after{content:"";position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--clr-white);transition:width .25s}
+    .nav__links a:hover::after{width:100%}
+    .nav__profile{width:36px;height:36px;border:2px solid var(--clr-white);border-radius:8px;display:grid;place-items:center}
+    .nav__profile svg{width:20px;height:20px;fill:none;stroke:var(--clr-white);stroke-width:2}
+
+    /* -------------------- HERO CARD -------------------- */
+    .hero{background:#fff;color:#000;border-radius:8px;padding:48px 64px;margin-top:88px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .hero h1{font-size:64px;font-weight:700}
+    .hero-date{font-size:48px;font-weight:600}
+    .cta-group{display:flex;gap:24px;margin-top:24px}
+    .btn{border:none;border-radius:6px;padding:14px 36px;font-weight:600;font-size:16px;cursor:pointer;transition:transform .25s,filter .25s}
+    .btn:active{transform:scale(.96)}
+    .btn--primary{background:#22c55e;color:#fff}
+    .btn--primary:hover{filter:brightness(1.1)}
+    .btn--secondary{background:#d6d6d6}
+
+    /* -------------------- TIME TABLE SECTION -------------------- */
+    .section-title{font-size:24px;font-weight:700;margin:64px 0 24px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+    .card-event{background:#fff;color:#000;border-radius:6px;padding:24px;display:flex;flex-direction:column;justify-content:space-between;min-height:200px}
+    .card-event h3{font-size:20px;font-weight:700;margin-bottom:16px;word-break:break-word}
+    .event-date{font-weight:600;font-size:18px;letter-spacing:.05em;text-align:right}
+    .tag{display:inline-block;padding:8px 16px;border-radius:4px;font-size:14px;font-weight:600;margin-top:auto}
+    .tag--yellow{background:#facc15;color:#000}
+
+    /* -------------------- COMMUNITY SECTION -------------------- */
+    .community-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:32px;margin-top:32px}
+    .community-card{background:#d6d6d6;border-radius:4px;padding:32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:24px;min-height:270px;color:#000;font-weight:700}
+    .qr-placeholder{background:#666;width:160px;height:160px;border-radius:4px;display:grid;place-items:center;color:#fff;font-size:24px}
+
+    /* -------------------- FOOTER -------------------- */
+    footer{margin:120px 0 40px;text-align:center;font-size:14px;color:#d4d4d4}
+
+    /* -------------------- MEDIA QUERIES -------------------- */
+    @media (max-width:640px){
+      .hero h1{font-size:48px}
+      .hero-date{font-size:36px}
+      .nav{gap:16px;padding:0 20px;border-radius:14px}
+      .nav__links{gap:24px;font-size:16px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Decorative blurred blobs -->
+  <div class="blob pink"></div>
+  <div class="blob green"></div>
+  <div class="blob red"></div>
+
+  <header>
+    <nav class="nav">
+      <div class="nav__logo"><a href="{% url 'main:home' %}">哈开</a></div>
+      <div class="nav__links">
+        <a href="{% url 'main:events' %}">Events</a>
+        <a href="{% url 'main:photos' %}">Photos</a>
+        <a href="{% url 'main:home' %}#faq">FAQ</a>
+        <a href="{% url 'main:home' %}#contacts">Contacts</a>
+      </div>
+      <div class="nav__profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <!-- Hero / Top card -->
+    <section class="hero">
+      <div>
+        <h1>ML&nbsp;Crush</h1>
+        <div class="cta-group">
+          <a href="{% url 'main:ml_crush_details' %}" class="btn btn--primary">Register</a>
+          <a href="{% url 'main:ml_crush_details' %}" class="btn btn--secondary">about&nbsp;hackathon</a>
+        </div>
+      </div>
+      <div class="hero-date">15.06</div>
+    </section>
+
+    <!-- Time table -->
+    <h2 class="section-title">Time table:</h2>
+    <div class="grid">
+      <article class="card-event">
+        <div>
+          <small>Next event</small>
+          <div class="event-date">30.06</div>
+          <h3>Break the Code</h3>
+        </div>
+        <span class="tag tag--yellow">Registration will open on 15.06</span>
+      </article>
+      <article class="card-event">
+        <div>
+          <div class="event-date">12.07</div>
+          <h3>Website Majesty</h3>
+        </div>
+        <span class="tag">Registration will be later</span>
+      </article>
+      <article class="card-event">
+        <div>
+          <div class="event-date">17.08</div>
+          <h3>App Grinding</h3>
+        </div>
+        <span class="tag">Registration will be later</span>
+      </article>
+    </div>
+
+    <!-- Community -->
+    <h2 class="section-title" style="margin-top:72px">Join our community</h2>
+    <div class="community-grid">
+      <div class="community-card">
+        <h3>WeChat</h3>
+        <div class="qr-placeholder">QR</div>
+      </div>
+      <div class="community-card">
+        <h3>QQ</h3>
+        <div class="qr-placeholder">QR</div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025&nbsp;Made by hakai team
+  </footer>
+</body>
+</html>

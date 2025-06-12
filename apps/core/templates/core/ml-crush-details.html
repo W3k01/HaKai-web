@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Crush – Landing</title>
+
+  <!-- Satoshi Variable font -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,400,500,700,900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & GLOBAL ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:"Satoshi",sans-serif;background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    :root{--clr-white:#ffffff;--clr-grey:#d6d6d6;--clr-outline:#4d4d4d}
+
+    /* ===== STATIC BLOBS ===== */
+    .blob{position:fixed;z-index:-1;border-radius:50%;filter:blur(140px);opacity:.85;pointer-events:none}
+    .blob.bl-left{top:-120px;left:-260px;width:600px;height:600px;background:radial-gradient(circle at 30% 30%,#ff00c8 0%,#7b2cf8 45%,transparent 80%)}
+    .blob.bl-right{bottom:-100px;right:-300px;width:640px;height:640px;background:radial-gradient(circle at 60% 60%,#67d6ff 0%,#8457ff 40%,transparent 80%)}
+
+    /* ===== NAVBAR ===== */
+    .nav{margin:16px auto;border:2px solid var(--clr-white);border-radius:20px;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;font-size:18px;font-weight:700;position:fixed;top:0;left:0;right:0;max-width:1280px;background:rgba(0,0,0,0.9);backdrop-filter:blur(10px);z-index:1000}
+    .nav__links{display:flex;gap:48px}
+    .nav__links a{position:relative}
+    .nav__links a::after{content:"";position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--clr-white);transition:width .25s}
+    .nav__links a:hover::after{width:100%}
+    .nav__profile{width:36px;height:36px;border:2px solid var(--clr-white);border-radius:8px;display:grid;place-items:center}
+    .nav__profile svg{width:20px;height:20px;fill:none;stroke:var(--clr-white);stroke-width:2}
+
+    /* ===== HERO SECTION ===== */
+    .hero{padding:220px 32px 220px;max-width:1280px;margin:0 auto;position:relative;text-align:center}
+    .hero-date{position:absolute;left:32px;top:200px;font-size:120px;font-weight:700;line-height:1}
+    .hero-title{font-size:96px;font-weight:900;letter-spacing:1px}
+
+    .hero-glow{position:absolute;left:50%;top:180px;transform:translateX(-50%);width:560px;height:560px;border-radius:50%;background:conic-gradient(from 45deg,#ffea00 0%,#ff0080 25%,#00ffd3 55%,#ffea00 100%);filter:blur(140px);opacity:.6;z-index:-1}
+
+    /* ===== ABOUT GRID ===== */
+    .about{max-width:1280px;margin:0 auto;padding:0 32px 160px}
+    .about h2{font-size:28px;font-weight:900;text-align:center;margin-bottom:64px}
+    .about-grid{display:grid;grid-template-columns:repeat(3,minmax(280px,1fr));gap:32px;justify-content:center}
+    .about-card{border:2px solid var(--clr-outline);border-radius:14px;padding:32px 28px;display:flex;flex-direction:column;gap:16px;min-height:160px}
+    .about-card ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:18px;font-weight:500}
+    .about-card ul li::before{content:"\2726";color:#a855ff;font-size:14px;margin-right:12px;vertical-align:middle}
+    .about-card h3{font-size:20px;font-weight:800;margin-bottom:6px}
+    .about-card p{font-size:14px;line-height:1.6;color:#d4d4d4}
+    @media(min-width:900px){.who-card{grid-row:span 2}}
+
+    /* first (who can take part) spans 1 row tall but fixed width left */
+    
+
+    /* ===== MEDIA ===== */
+    @media(max-width:900px){
+      .hero-date{position:static;font-size:96px;margin-bottom:40px;text-align:center;left:auto;top:auto;transform:none}
+      .hero-title{font-size:72px}
+      .hero{padding-top:120px}
+      .about-grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));justify-content:center}
+    }
+    @media(max-width:600px){
+      .nav{padding:0 20px;border-radius:14px;font-size:16px}
+      .nav__links{gap:24px}
+      .hero-date{font-size:64px}
+      .hero-title{font-size:48px}
+      .hero-glow{width:400px;height:400px;top:160px}
+    }
+  </style>
+</head>
+<body>
+  <!-- blobs -->
+  <div class="blob bl-left"></div><div class="blob bl-right"></div>
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav">
+      <div class="nav__logo"><a href="{% url 'core:home' %}">哈开</a></div>
+      <div class="nav__links"><a href="{% url 'core:events' %}">Events</a><a href="{% url 'core:photos' %}">Photos</a><a href="{% url 'core:home' %}#faq">FAQ</a><a href="{% url 'core:home' %}#contacts">Contacts</a></div>
+      <div class="nav__profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <span class="hero-date">15.06</span>
+    <h1 class="hero-title">ML Crush</h1>
+  </section>
+
+  <!-- ABOUT GRID -->
+  <section class="about" id="about">
+    <h2>About</h2>
+    <div class="about-grid">
+      <!-- who can take part -->
+      <div class="about-card who-card">
+        <h3>Who can take part</h3>
+        <ul>
+          <li>If you are 18 or older</li>
+          <li>Team of 1‑5 people</li>
+          <li>International and Chinese students</li>
+        </ul>
+      </div>
+
+      <div class="about-card"><h3>Build Real‑World AI</h3><p>Tackle meaningful machine learning challenges that reflect real industry problems. Show how your models can solve data‑driven tasks with impact.</p></div>
+      
+      <div class="about-card"><h3>Sharpen Your Edge</h3><p>Push your technical boundaries with hands‑on problem solving, from model tuning to deployment. Explore new tools, frameworks, and strategies in a competitive yet friendly space.</p></div>
+      <div class="about-card"><h3>Connect Through Innovation</h3><p>Collaborate with passionate peers, mentors, and industry experts. Whether you're looking for co‑founders or career insight, this is the place to start.</p></div>
+      <div class="about-card"><h3>Earn Recognition & Opportunities</h3><p>Top teams will receive prizes, exposure to top‑tier companies, and opportunities to grow their projects beyond the hackathon.</p></div>
+    </div>
+  </section>
+</body>
+</html>
