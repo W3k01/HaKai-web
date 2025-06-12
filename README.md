@@ -158,4 +158,4 @@ For production deployment:
 
 ## License
 
-© 2025 Made by hakai team 
+© 2025 Made by hakai team
