@@ -24,7 +24,12 @@ def ml_crush_details(request):
 
 def register(request):
     """Registration redirect to events page"""
-    return redirect('main:events')
+    return redirect('core:events')
+
+
+def profile(request):
+    """User profile page view"""
+    return render(request, 'core/profile.html')
 
 
 def test_api(request):
