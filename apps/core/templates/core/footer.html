@@ -1,0 +1,134 @@
+<!-- MODERN FOOTER -->
+<footer id="contacts" class="footer-modern">
+  <div class="footer-content">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h2 class="footer-logo">哈开</h2>
+        <p class="footer-tagline" data-en="Olympiads in Software Development" data-zh="软件开发奥林匹克">Olympiads in Software Development</p>
+      </div>
+      
+      <div class="footer-links-section">
+        <div class="footer-col">
+          <h3 data-en="Events" data-zh="赛事">Events</h3>
+          <ul>
+            <li><a href="/ml-crush-details/" data-en="ML Crush" data-zh="机器学习挑战">ML Crush</a></li>
+            <li><a href="/break-the-code-details/" data-en="Break the Code" data-zh="代码挑战">Break the Code</a></li>
+            <li><a href="/website-majesty-details/" data-en="Website Majesty" data-zh="网站设计">Website Majesty</a></li>
+            <li><a href="/app-grinding-details/" data-en="App Grinding" data-zh="应用开发">App Grinding</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 data-en="Community" data-zh="社区">Community</h3>
+          <ul>
+            <li><a href="/photos/" data-en="Photos" data-zh="照片">Photos</a></li>
+            <li><a href="/#faq" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+            <li><a href="/register/" data-en="Register" data-zh="注册">Register</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h3 data-en="Contact" data-zh="联系我们">Contact</h3>
+          <div class="contact-info">
+            <p><strong>hakai@hitsz.com</strong></p>
+            <div class="social-icons">
+              <a href="#" aria-label="WeChat">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="QQ">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="GitHub">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-content">
+        <button class="lang-toggle" onclick="toggleLanguage()">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <span id="current-lang">EN</span>
+        </button>
+        <p class="footer-credit" data-en="© 2025 Made by hakai team" data-zh="© 2025 哈开团队制作">© 2025 Made by hakai team</p>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Footer CSS -->
+<style>
+.footer-modern{background:linear-gradient(135deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02));border-top:1px solid rgba(255,255,255,0.1);backdrop-filter:blur(20px);margin-top:100px}
+.footer-content{max-width:1280px;margin:0 auto;padding:60px 32px 0}
+.footer-main{display:grid;grid-template-columns:1fr 2fr;gap:60px;margin-bottom:40px}
+.footer-brand{display:flex;flex-direction:column;gap:16px}
+.footer-logo{font-size:48px;font-weight:900;background:linear-gradient(135deg,#ff00c8,#00ffc6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin:0}
+.footer-tagline{color:#d6d6d6;font-size:16px;line-height:1.5}
+.footer-links-section{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.footer-col h3{font-size:18px;font-weight:700;margin-bottom:20px;color:#fff}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.footer-col ul li a{color:#d6d6d6;font-size:14px;transition:color .3s ease;text-decoration:none}
+.footer-col ul li a:hover{color:#00ffc6}
+.contact-info p{color:#fff;margin-bottom:16px}
+.social-icons{display:flex;gap:12px}
+.social-icons a{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:all .3s ease;text-decoration:none}
+.social-icons a:hover{background:rgba(0,255,198,0.2);transform:translateY(-2px)}
+.social-icons svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;color:#d6d6d6}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding:24px 0}
+.footer-bottom-content{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}
+.footer-credit{color:#d6d6d6;font-size:14px;text-align:center;margin:0}
+.lang-toggle{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:8px 16px;color:#fff;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;cursor:pointer;transition:all .3s ease}
+.lang-toggle:hover{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.3)}
+.lang-toggle svg{stroke:currentColor;fill:none;stroke-width:2}
+
+/* Language switching */
+[data-lang="zh"] [data-en] { display: none; }
+[data-lang="en"] [data-zh] { display: none; }
+body:not([data-lang]) [data-zh] { display: none; }
+
+@media(max-width:900px){
+  .footer-main{grid-template-columns:1fr;gap:40px}
+  .footer-links-section{grid-template-columns:repeat(2,1fr);gap:30px}
+}
+@media(max-width:600px){
+  .footer-links-section{grid-template-columns:1fr;gap:24px}
+  .footer-bottom-content{grid-template-columns:1fr;justify-items:center;gap:16px}
+}
+</style>
+
+<!-- Language switching script -->
+<script>
+function toggleLanguage() {
+  const currentLang = document.body.getAttribute('data-lang') || 'en';
+  const newLang = currentLang === 'en' ? 'zh' : 'en';
+  document.body.setAttribute('data-lang', newLang);
+  const langElement = document.getElementById('current-lang');
+  if (langElement) {
+    langElement.textContent = newLang.toUpperCase();
+  }
+  localStorage.setItem('language', newLang);
+}
+
+// Load saved language
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('language') || 'en';
+  document.body.setAttribute('data-lang', savedLang);
+  const langElement = document.getElementById('current-lang');
+  if (langElement) {
+    langElement.textContent = savedLang.toUpperCase();
+  }
+});
+</script>

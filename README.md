@@ -39,17 +39,7 @@ A Django-based website for the "哈开" (Hakai) Olympiads in Software Developmen
    python manage.py migrate
    ```
    
-   **Option B: PostgreSQL (Production)**
-   - Install PostgreSQL on your system
-   - Create a database named `hakai_db`
-   - Set environment variables or create a `.env` file:
-     ```
-     DB_NAME=hakai_db
-     DB_USER=your_postgres_user
-     DB_PASSWORD=your_postgres_password
-     DB_HOST=localhost
-     DB_PORT=5432
-     ```
+   **Note:** The project uses SQLite by default for simplicity. For production, consider using PostgreSQL with proper environment configuration.
 
 4. **Collect static files**
    ```bash
@@ -106,23 +96,15 @@ Create a `.env` file in the project root for environment-specific settings:
 # Django Configuration
 SECRET_KEY=your-secret-key-here
 DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
 
-# PostgreSQL Database Configuration (optional)
-DB_NAME=hakai_db
-DB_USER=postgres
-DB_PASSWORD=your_password
-DB_HOST=localhost
-DB_PORT=5432
+# CORS Configuration
+CORS_ALLOW_ALL_ORIGINS=False
 ```
 
 ## Database Configuration
 
-The project supports both SQLite and PostgreSQL:
-
-- **SQLite**: Used by default for development. No additional setup required.
-- **PostgreSQL**: Configure using environment variables for production use.
-
-To switch to PostgreSQL, set the `DB_NAME` environment variable. The application will automatically detect this and use PostgreSQL instead of SQLite.
+The project uses SQLite by default for simplicity and ease of development. No additional database setup is required.
 
 ## Static Files
 
@@ -148,12 +130,9 @@ For production deployment:
 
 ## Dependencies
 
-- Django 4.2+
-- psycopg2-binary (PostgreSQL adapter)
+- Django 5.2+
 - python-decouple (environment variable management)
-- Pillow (image handling)
 - whitenoise (static file serving)
-- gunicorn (WSGI server)
 - django-cors-headers (CORS handling)
 
 ## License

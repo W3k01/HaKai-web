@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>App Grinding – Landing</title>
+
+  <!-- Satoshi Variable font -->
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,400,500,700,900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & GLOBAL ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{font-family:"Satoshi",sans-serif;background:#000;color:#fff;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    :root{--clr-white:#ffffff;--clr-grey:#d6d6d6;--clr-outline:#4d4d4d;--clr-primary:#8b5cf6;--clr-secondary:#06d6a0;--clr-accent:#f72585}
+
+    /* ===== MOBILE-INSPIRED BACKGROUND ===== */
+    .mobile-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden}
+    .mobile-screen{position:absolute;width:200px;height:400px;border:8px solid rgba(255,255,255,0.1);border-radius:30px;background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(6,214,160,0.1))}
+    .screen-1{top:10%;left:5%;animation:float-screen 12s ease-in-out infinite;transform:rotate(-15deg)}
+    .screen-2{top:30%;right:8%;animation:float-screen 10s ease-in-out infinite reverse;transform:rotate(20deg)}
+    .screen-3{bottom:20%;left:15%;animation:float-screen 14s ease-in-out infinite;transform:rotate(-10deg)}
+
+    @keyframes float-screen{0%,100%{transform:translateY(0px) rotate(var(--rotation))}50%{transform:translateY(-30px) rotate(var(--rotation))}}
+    .screen-1{--rotation:-15deg}
+    .screen-2{--rotation:20deg}
+    .screen-3{--rotation:-10deg}
+
+    /* ===== NAVBAR ===== */
+    .nav{margin:16px auto;border:2px solid var(--clr-white);border-radius:20px;display:flex;align-items:center;justify-content:space-between;height:56px;padding:0 32px;font-size:18px;font-weight:700;position:fixed;top:0;left:0;right:0;max-width:1280px;background:rgba(0,0,0,0.95);backdrop-filter:blur(10px);z-index:1000}
+    .nav__links{display:flex;gap:48px}
+    .nav__links a{position:relative}
+    .nav__links a::after{content:"";position:absolute;bottom:-6px;left:0;width:0;height:2px;background:var(--clr-white);transition:width .25s}
+    .nav__links a:hover::after{width:100%}
+    .nav__profile{width:36px;height:36px;border:2px solid var(--clr-white);border-radius:8px;display:grid;place-items:center}
+    .nav__profile svg{width:20px;height:20px;fill:none;stroke:var(--clr-white);stroke-width:2}
+
+    /* ===== HERO SECTION ===== */
+    .hero{padding:140px 32px 100px;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:64px;align-items:center}
+    .hero-content h1{font-size:80px;font-weight:900;line-height:0.9;margin-bottom:32px;background:linear-gradient(135deg,var(--clr-primary) 0%,var(--clr-secondary) 50%,var(--clr-accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-content .subtitle{font-size:22px;color:var(--clr-grey);margin-bottom:48px;line-height:1.5;max-width:500px}
+    .hero-stats{display:flex;gap:32px;margin-bottom:48px}
+    .stat{text-align:center}
+    .stat-number{font-size:32px;font-weight:900;color:var(--clr-secondary);display:block}
+    .stat-label{font-size:14px;color:var(--clr-grey);text-transform:uppercase;letter-spacing:1px}
+    .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+    .btn{padding:16px 32px;border-radius:12px;font-weight:700;font-size:16px;border:none;cursor:pointer;transition:all .3s ease;text-decoration:none;display:inline-block}
+    .btn--primary{background:linear-gradient(135deg,var(--clr-primary),var(--clr-accent));color:#fff;box-shadow:0 8px 32px rgba(139,92,246,0.3)}
+    .btn--primary:hover{transform:translateY(-3px);box-shadow:0 12px 48px rgba(139,92,246,0.4)}
+    .btn--secondary{background:transparent;color:var(--clr-white);border:2px solid var(--clr-secondary)}
+    .btn--secondary:hover{background:var(--clr-secondary);color:#000}
+
+    .hero-phone{width:300px;height:600px;background:linear-gradient(135deg,#1a1a1a,#2d2d2d);border:12px solid #333;border-radius:40px;position:relative;box-shadow:0 30px 100px rgba(0,0,0,0.5)}
+    .hero-phone::before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:60px;height:6px;background:#666;border-radius:3px}
+    .phone-screen{position:absolute;top:40px;left:20px;right:20px;bottom:40px;background:linear-gradient(135deg,var(--clr-primary),var(--clr-secondary));border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    .app-icon{width:80px;height:80px;background:rgba(255,255,255,0.2);border-radius:20px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;font-size:32px}
+
+    /* ===== PLATFORMS SECTION ===== */
+    .platforms{padding:100px 32px;max-width:1280px;margin:0 auto}
+    .platforms h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:64px;background:linear-gradient(135deg,var(--clr-primary),var(--clr-secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .platform-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px}
+    .platform-card{background:rgba(255,255,255,0.03);border:2px solid rgba(255,255,255,0.1);border-radius:24px;padding:40px 32px;text-align:center;transition:all .4s ease;position:relative;overflow:hidden}
+    .platform-card:hover{transform:translateY(-12px);border-color:var(--clr-primary);box-shadow:0 25px 80px rgba(139,92,246,0.15)}
+    .platform-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:linear-gradient(90deg,var(--clr-primary),var(--clr-secondary),var(--clr-accent));opacity:0;transition:opacity .4s ease}
+    .platform-card:hover::before{opacity:1}
+    .platform-icon{width:100px;height:100px;margin:0 auto 24px;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,var(--clr-primary),var(--clr-secondary))}
+    .platform-card h3{font-size:28px;font-weight:800;margin-bottom:16px}
+    .platform-card p{color:var(--clr-grey);line-height:1.6;margin-bottom:24px}
+    .platform-features{list-style:none;text-align:left}
+    .platform-features li{margin-bottom:12px;padding-left:24px;position:relative;color:var(--clr-grey);font-size:14px}
+    .platform-features li::before{content:"✓";position:absolute;left:0;color:var(--clr-secondary);font-weight:bold}
+
+    /* ===== TIMELINE SECTION ===== */
+    .timeline{padding:100px 32px;max-width:1000px;margin:0 auto}
+    .timeline h2{font-size:48px;font-weight:900;text-align:center;margin-bottom:64px}
+    .timeline-track{position:relative}
+    .timeline-track::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--clr-primary),var(--clr-secondary),var(--clr-accent));transform:translateX(-50%)}
+    .timeline-item{display:flex;align-items:center;margin-bottom:48px;position:relative}
+    .timeline-item:nth-child(even){flex-direction:row-reverse}
+    .timeline-content{flex:1;background:rgba(255,255,255,0.05);border-radius:20px;padding:32px;margin:0 32px;backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.1)}
+    .timeline-date{font-size:18px;font-weight:700;color:var(--clr-accent);margin-bottom:8px}
+    .timeline-content h3{font-size:24px;font-weight:800;margin-bottom:12px}
+    .timeline-content p{color:var(--clr-grey);line-height:1.6}
+    .timeline-dot{width:20px;height:20px;background:linear-gradient(135deg,var(--clr-primary),var(--clr-secondary));border-radius:50%;border:4px solid #000;z-index:1}
+
+    /* ===== MEDIA ===== */
+    @media(max-width:1100px){
+      .hero{grid-template-columns:1fr;text-align:center;gap:48px}
+      .hero-phone{width:250px;height:500px;margin:0 auto}
+      .phone-screen{top:30px;left:15px;right:15px;bottom:30px}
+    }
+    @media(max-width:900px){
+      .hero-content h1{font-size:64px}
+      .platforms h2,.timeline h2{font-size:36px}
+      .timeline-track::before{display:none}
+      .timeline-item{flex-direction:column!important;text-align:center}
+      .timeline-content{margin:0 0 24px 0}
+    }
+    @media(max-width:600px){
+      .nav{padding:0 20px;border-radius:14px;font-size:16px}
+      .nav__links{gap:24px}
+      .hero-content h1{font-size:48px}
+      .hero-stats{flex-direction:column;gap:16px}
+      .hero-cta{justify-content:center}
+      .hero-phone{width:200px;height:400px}
+    }
+  </style>
+</head>
+<body>
+  <!-- Mobile background -->
+  <div class="mobile-bg">
+    <div class="mobile-screen screen-1"></div>
+    <div class="mobile-screen screen-2"></div>
+    <div class="mobile-screen screen-3"></div>
+  </div>
+
+  <!-- NAV -->
+  <header>
+    <nav class="nav">
+      <div class="nav__logo"><a href="{% url 'core:home' %}">哈开</a></div>
+      <div class="nav__links"><a href="{% url 'core:events' %}">Events</a><a href="{% url 'core:photos' %}">Photos</a><a href="{% url 'core:home' %}#faq">FAQ</a><a href="{% url 'core:home' %}#contacts">Contacts</a></div>
+      <a href="{% url 'core:profile' %}" class="nav__profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg></a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>App Grinding</h1>
+      <p class="subtitle">Build the next generation of mobile applications. From concept to deployment, create apps that users will love.</p>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-number">48</span>
+          <span class="stat-label">Hours</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">5</span>
+          <span class="stat-label">Max Team Size</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">3</span>
+          <span class="stat-label">Platforms</span>
+        </div>
+      </div>
+      
+      <div class="hero-cta">
+        <a href="#" class="btn btn--primary">Start Building</a>
+        <a href="#" class="btn btn--secondary">View Guidelines</a>
+      </div>
+    </div>
+    
+    <div class="hero-phone">
+      <div class="phone-screen">
+        <div class="app-icon">📱</div>
+        <div>17.08</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORMS -->
+  <section class="platforms">
+    <h2>Choose Your Platform</h2>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <div class="platform-icon">🍎</div>
+        <h3>iOS Native</h3>
+        <p>Build with Swift and SwiftUI for the Apple ecosystem</p>
+        <ul class="platform-features">
+          <li>Xcode Development Environment</li>
+          <li>Core Data & CloudKit Integration</li>
+          <li>App Store Distribution</li>
+          <li>iOS 16+ Feature Support</li>
+        </ul>
+      </div>
+      
+      <div class="platform-card">
+        <div class="platform-icon">🤖</div>
+        <h3>Android Native</h3>
+        <p>Create with Kotlin and Jetpack Compose</p>
+        <ul class="platform-features">
+          <li>Android Studio IDE</li>
+          <li>Material Design 3</li>
+          <li>Google Play Console</li>
+          <li>Android 12+ APIs</li>
+        </ul>
+      </div>
+      
+      <div class="platform-card">
+        <div class="platform-icon">⚛️</div>
+        <h3>Cross-Platform</h3>
+        <p>Build once, deploy everywhere with React Native or Flutter</p>
+        <ul class="platform-features">
+          <li>React Native / Flutter</li>
+          <li>Shared Codebase</li>
+          <li>Native Performance</li>
+          <li>Dual Platform Deployment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline">
+    <h2>Development Timeline</h2>
+    <div class="timeline-track">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">Day 1 - Morning</div>
+          <h3>Kickoff & Ideation</h3>
+          <p>Team formation, idea pitching, and initial planning. Define your app concept and core features.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">Day 1 - Evening</div>
+          <h3>Design & Architecture</h3>
+          <p>Create wireframes, design mockups, and establish your app's technical architecture.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">Day 2 - Full Day</div>
+          <h3>Development Sprint</h3>
+          <p>Intensive coding session. Build core functionality, implement features, and integrate APIs.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">Day 2 - Evening</div>
+          <h3>Testing & Polish</h3>
+          <p>Debug, test on devices, refine UI/UX, and prepare your final presentation.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <div class="timeline-date">Final Day</div>
+          <h3>Demo & Judging</h3>
+          <p>Present your app to judges and fellow developers. Showcase your innovation and technical skills.</p>
+        </div>
+        <div class="timeline-dot"></div>
+      </div>
+    </div>
+  </section>
+  {% include 'core/footer.html' %}
+</body>
+</html>

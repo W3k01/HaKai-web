@@ -10,8 +10,6 @@
   <link rel="preconnect" href="https://api.fontshare.com"/>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@1,400,500,700,900&display=swap" rel="stylesheet" />
 
-  <!-- Tailwind (used only for cards section) -->
-  <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide icons -->
   <script defer src="https://unpkg.com/lucide@latest"></script>
 
@@ -33,7 +31,7 @@
   <!-- HERO -->
   <section class="hero wrapper">
     <div class="hero__side left">Olympiads<br>in software<br>development</div>
-    <h1 class="hero__headline" data-text="哈开">哈开</h1>
+    <h1 class="hero__headline">哈开</h1>
     <div class="hero__side right">Test<br>your programming<br>skills</div>
     <a href="{% url 'core:register' %}" class="btn-primary">Register</a>
   </section>
@@ -75,24 +73,84 @@
   </section>
 
   <!-- FOOTER -->
-  <footer id="contacts" class="wrapper">
-    <div class="footer-inner">
-      <div class="footer-col" style="flex:1 1 200px">
-        <h3 class="mb-6 text-xl font-semibold">Contacts</h3>
-        <strong>hakai@hitsz.com</strong>
-        <div class="footer-icons"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
+  <footer id="contacts" class="footer-modern">
+    <div class="footer-content">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h2 class="footer-logo">哈开</h2>
+          <p class="footer-tagline" data-en="Olympiads in Software Development" data-zh="软件开发奥林匹克">Olympiads in Software Development</p>
+        </div>
+        
+        <div class="footer-links-section">
+          <div class="footer-col">
+            <h3 data-en="Events" data-zh="赛事">Events</h3>
+            <ul>
+              <li><a href="{% url 'core:ml_crush_details' %}" data-en="ML Crush" data-zh="机器学习挑战">ML Crush</a></li>
+              <li><a href="{% url 'core:break_the_code_details' %}" data-en="Break the Code" data-zh="代码挑战">Break the Code</a></li>
+              <li><a href="{% url 'core:website_majesty_details' %}" data-en="Website Majesty" data-zh="网站设计">Website Majesty</a></li>
+              <li><a href="{% url 'core:app_grinding_details' %}" data-en="App Grinding" data-zh="应用开发">App Grinding</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-col">
+            <h3 data-en="Community" data-zh="社区">Community</h3>
+            <ul>
+              <li><a href="{% url 'core:photos' %}" data-en="Photos" data-zh="照片">Photos</a></li>
+              <li><a href="#faq" data-en="FAQ" data-zh="常见问题">FAQ</a></li>
+              <li><a href="{% url 'core:register' %}" data-en="Register" data-zh="注册">Register</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-col">
+            <h3 data-en="Contact" data-zh="联系我们">Contact</h3>
+            <div class="contact-info">
+              <p><strong>hakai@hitsz.com</strong></p>
+              <div class="social-icons">
+                <a href="#" aria-label="WeChat"><svg data-lucide="message-circle" width="24" height="24"></svg></a>
+                <a href="#" aria-label="QQ"><svg data-lucide="users" width="24" height="24"></svg></a>
+                <a href="#" aria-label="GitHub"><svg data-lucide="github" width="24" height="24"></svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <ul class="footer-links" style="flex:1 1 300px"><li><a href="{% url 'core:register' %}">Register</a></li><li><a href="{% url 'core:photos' %}">Photos</a></li><li><a href="#faq">FAQ</a></li><li><a href="#contacts">Contacts</a></li></ul>
-      <div class="lang-switch" style="flex-shrink:0"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg> English</div>
+      
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <button class="lang-toggle" onclick="toggleLanguage()">
+            <svg data-lucide="globe" width="20" height="20"></svg>
+            <span id="current-lang">EN</span>
+          </button>
+          <p class="footer-credit" data-en="© 2025 Made by hakai team" data-zh="© 2025 哈开团队制作">© 2025 Made by hakai team</p>
+          <div></div>
+        </div>
+      </div>
     </div>
-    <p style="text-align:center;margin-top:80px;font-size:14px;color:#d4d4d4">© 2025 Made by hakai team</p>
   </footer>
 
-  <!-- FAQ accordion + lucide -->
+  <!-- FAQ accordion + lucide + Language switching -->
   <script>
+    // FAQ accordion
     document.querySelectorAll('.faq-btn').forEach(btn=>{
       btn.addEventListener('click',()=>{
         const item=btn.parentElement;item.classList.toggle('open');const content=item.querySelector('.faq-content');item.classList.contains('open')?content.style.maxHeight=content.scrollHeight+'px':content.style.maxHeight=null;});});
+    
+    // Language switching
+    function toggleLanguage() {
+      const currentLang = document.body.getAttribute('data-lang') || 'en';
+      const newLang = currentLang === 'en' ? 'zh' : 'en';
+      document.body.setAttribute('data-lang', newLang);
+      document.getElementById('current-lang').textContent = newLang.toUpperCase();
+      localStorage.setItem('language', newLang);
+    }
+    
+    // Load saved language
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'en';
+      document.body.setAttribute('data-lang', savedLang);
+      document.getElementById('current-lang').textContent = savedLang.toUpperCase();
+    });
+    
     lucide&&lucide.createIcons();
   </script>
 </body>
